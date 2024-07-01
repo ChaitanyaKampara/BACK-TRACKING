@@ -1,0 +1,20 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        subset = []
+        def dfs(i):  # [1,2,3] => 1,2,3 are indexes
+            if i >= len(nums):   # out of bound
+               res.append(subset.copy())
+               return
+            # left branch of tree
+            subset.append(nums[i])  # adding 1 , adding 2
+            dfs(i+1)                # adding 3
+            # right branch of tree
+            subset.pop() # not adding means poping from prev
+            dfs(i+1)
+
+        dfs(0)            
+        return res
+  # ADDING 1 OR NOT , ADDING 2 OR NOT , ADDING 3 OR NOT    
+  # NEEDED res[] , subset[]  
+        
